@@ -3,6 +3,8 @@ import './Metronome.css';
 import click1 from './audio/hyah2.wav';
 import click2 from './audio/hyah1.wav';
 
+const richter = require('./image/richter.png');
+
 class Metronome extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,7 @@ class Metronome extends Component {
         this.state = {
             playing: false,
             count: 0,
-            bpm: 100,
+            bpm: 180,
             beatsPerMeasure: 4
         };
 
@@ -93,17 +95,28 @@ class Metronome extends Component {
 
         return (
             <div className="metronome">
-                <div className="bpm-slider">
+                <h1>
+                    A Richter-based Metronome
+                </h1>
+                <div className="background-opacity">
+                </div>
+                <div className="richter-portrait">
+                    <img src={richter} alt="Ricther" width="370px"/>
+                </div>
+                <div className="description mb-20">
+                    Use the slider to change the frequency of the metronome!
+                </div>
+                <div className="bpm-slider mb-20">
                     <div>{bpm} BPM</div>
                     <input 
                         type="range" 
-                        min="60" 
-                        max="360" 
+                        min="30" 
+                        max="238" 
                         value={bpm}
                         onChange={this.handleBpmChange}
                     />
                 </div>
-                <button onClick={this.startStop}>
+                <button id="playButton" onClick={this.startStop}>
                     {playing ? 'Stop' : 'Start'}
                 </button>
             </div>
